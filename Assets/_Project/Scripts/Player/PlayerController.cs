@@ -8,8 +8,9 @@ namespace pepipe.DeathRun.Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour {
         public Action Jumping;
+        public Action StopJumping;
         public Action Dying;
-        
+
         [SerializeField] float m_WalkModifier = 1f;
         [SerializeField] float m_MoveSpeed = 5f;
         [SerializeField] float m_JumpForce = 5f;
@@ -58,6 +59,7 @@ namespace pepipe.DeathRun.Player
             if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
             
             Debug.Log("Ground");
+            StopJumping?.Invoke();
             _isGrounded = true;
             _doubleJump = 0;
         }
@@ -76,6 +78,7 @@ namespace pepipe.DeathRun.Player
             }
             else if (LayerMask.LayerToName(other.gameObject.layer).Equals(DeathLayer)) {
                 Debug.Log("Death!");
+                _rb.isKinematic = true;
                 Dying?.Invoke();
             }
         }
