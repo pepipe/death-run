@@ -25,10 +25,11 @@ namespace pepipe.DeathRun.Player
         Vector2 _rawInput;
         bool _isJumping;
         Rigidbody _rb;
-        int _doubleJump = 0;
+        int _doubleJump;
         bool _isGrounded;
         bool _isFalling;
         Coroutine _checkPlayerPosCoroutine;
+        bool _pressedUI;
 
         const string GroundLayer = "Ground";
         const string FallLayer = "Fall";
@@ -40,6 +41,11 @@ namespace pepipe.DeathRun.Player
 
         void Start() {
             _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
+        }
+
+        void Update()
+        {
+            _pressedUI = EventSystem.current.IsPointerOverGameObject();
         }
 
         void FixedUpdate() {
@@ -63,8 +69,8 @@ namespace pepipe.DeathRun.Player
 
         //Used by the input system
         void OnJump(InputValue value) {
-            if (EventSystem.current.IsPointerOverGameObject()) return;//UI Clicks
             if(!_isGrounded && _doubleJump >= 2) return;
+            if (_pressedUI) return;
             
             Jumping?.Invoke();
             ++_doubleJump;
