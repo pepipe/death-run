@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using pepipe.Utils.Logging;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,10 +12,11 @@ namespace pepipe.DeathRun.Player
         public Action Jumping;
         public Action StopJumping;
         public Action Dying;
+        public Action<int> Score;
 
         [SerializeField] float m_WalkModifier = 1f;
-        [SerializeField] float m_MoveSpeed = 5f;
-        [SerializeField] float m_JumpForce = 5f;
+        [SerializeField] float m_MoveSpeed = 7f;
+        [SerializeField] float m_JumpForce = 7f;
         
         [Header("Debug")] 
         [SerializeField] CustomLogger m_Logger;
@@ -26,6 +28,7 @@ namespace pepipe.DeathRun.Player
         int _doubleJump = 0;
         bool _isGrounded;
         bool _isFalling;
+        Coroutine _checkPlayerPosCoroutine;
 
         const string GroundLayer = "Ground";
         const string FallLayer = "Fall";
@@ -34,7 +37,11 @@ namespace pepipe.DeathRun.Player
         void Awake() {
             _rb = GetComponent<Rigidbody>();
         }
-        
+
+        void Start() {
+            _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
+        }
+
         void FixedUpdate() {
             if (_isFalling) return;
             
@@ -45,6 +52,13 @@ namespace pepipe.DeathRun.Player
             //Make the player jump
             _rb.velocity += new Vector3(0f, m_JumpForce / _doubleJump, 0);
             _isJumping = false;
+        }
+
+        IEnumerator CheckPlayerPosition() {
+            yield return new WaitForSeconds(.15f);
+            var playerPosition = Convert.ToInt32(Math.Floor(transform.position.x));
+            Score?.Invoke(playerPosition);
+            _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
         }
 
         //Used by the input system
@@ -80,6 +94,7 @@ namespace pepipe.DeathRun.Player
             }
             else if (LayerMask.LayerToName(other.gameObject.layer).Equals(DeathLayer)) {
                 m_Logger.Log("Death!", this);
+                StopCoroutine(_checkPlayerPosCoroutine);
                 _rb.isKinematic = true;
                 Dying?.Invoke();
             }
