@@ -1,4 +1,5 @@
 using System;
+using pepipe.Utils.Logging;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -15,6 +16,9 @@ namespace pepipe.DeathRun.Player
         [SerializeField] float m_MoveSpeed = 5f;
         [SerializeField] float m_JumpForce = 5f;
         
+        [Header("Debug")] 
+        [SerializeField] CustomLogger m_Logger;
+
         Vector2 _moveDirection;
         Vector2 _rawInput;
         bool _isJumping;
@@ -27,11 +31,10 @@ namespace pepipe.DeathRun.Player
         const string FallLayer = "Fall";
         const string DeathLayer = "Death";
 
-        void Awake()
-        {
+        void Awake() {
             _rb = GetComponent<Rigidbody>();
         }
-
+        
         void FixedUpdate() {
             if (_isFalling) return;
             
@@ -45,8 +48,7 @@ namespace pepipe.DeathRun.Player
         }
 
         //Used by the input system
-        void OnJump(InputValue value)
-        {
+        void OnJump(InputValue value) {
             if (EventSystem.current.IsPointerOverGameObject()) return;//UI Clicks
             if(!_isGrounded && _doubleJump >= 2) return;
             
@@ -58,7 +60,7 @@ namespace pepipe.DeathRun.Player
         void OnCollisionEnter(Collision other) {
             if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
             
-            Debug.Log("Ground");
+            m_Logger.Log("Ground", this);
             StopJumping?.Invoke();
             _isGrounded = true;
             _doubleJump = 0;
@@ -67,17 +69,17 @@ namespace pepipe.DeathRun.Player
         void OnCollisionExit(Collision other) {
             if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
             
-            Debug.Log("Exit Ground");
+            m_Logger.Log("Exit Ground", this);
             _isGrounded = false;
         }
 
         void OnTriggerEnter(Collider other) {
             if (LayerMask.LayerToName(other.gameObject.layer).Equals(FallLayer)) {
-                Debug.Log("Fall!");
+                m_Logger.Log("Fall!", this);
                 _isFalling = true;
             }
             else if (LayerMask.LayerToName(other.gameObject.layer).Equals(DeathLayer)) {
-                Debug.Log("Death!");
+                m_Logger.Log("Death!", this);
                 _rb.isKinematic = true;
                 Dying?.Invoke();
             }
