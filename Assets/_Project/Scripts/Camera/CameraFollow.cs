@@ -14,7 +14,7 @@ namespace pepipe.DeathRun.Camera
             _originalCamera = transform;
         }
     
-        void FixedUpdate() {
+        void LateUpdate() {
             var yPos = m_FollowInY
                 ? m_FollowTransform.position.y
                 : _originalCamera.position.y;

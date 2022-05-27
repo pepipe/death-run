@@ -5,7 +5,8 @@ namespace pepipe.DeathRun
 {
     public class SceneController : MonoBehaviour {
         [SerializeField] PlayerController m_Player;
+        [SerializeField] Player3DController m_3DPlayer;
 
-        public PlayerController Player => m_Player;
+        public IController Player => m_Player != null ? m_Player : m_3DPlayer;
     }
 }

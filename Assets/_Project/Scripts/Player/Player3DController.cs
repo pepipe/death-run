@@ -8,11 +8,14 @@ using UnityEngine.InputSystem;
 namespace pepipe.DeathRun.Player
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour, IController {
+    public class Player3DController : MonoBehaviour, IController {
         public Action Jumping { get; set; }
         public Action StopJumping { get; set; }
         public Action Dying { get; set; }
         public Action<int> Score { get; set; }
+        public Action GoingLeft { get; set; }
+        public Action GoingRight { get; set; }
+        public Action StopMoving { get; set; }
 
         [SerializeField] float m_WalkModifier = 1f;
         [SerializeField] float m_MoveSpeed = 7f;
@@ -24,12 +27,16 @@ namespace pepipe.DeathRun.Player
         Vector2 _moveDirection;
         Vector2 _rawInput;
         bool _isJumping;
+        bool _isMovingLeft;
+        bool _isMovingRight;
         Rigidbody _rb;
         int _doubleJump;
         bool _isGrounded;
         bool _isFalling;
         Coroutine _checkPlayerPosCoroutine;
         bool _pressedUI;
+        Vector3 _targetPosition;
+        float _initialPositionX;
 
         const string GroundLayer = "Ground";
         const string FallLayer = "Fall";
@@ -46,13 +53,28 @@ namespace pepipe.DeathRun.Player
         void Update()
         {
             _pressedUI = EventSystem.current.IsPointerOverGameObject();
+            
+            if (_isMovingLeft) {
+                var step = m_MoveSpeed * Time.deltaTime;
+                _targetPosition = new Vector3(_initialPositionX - 2, transform.position.y, transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
+            }else if (_isMovingRight) {
+                var step = m_MoveSpeed * Time.deltaTime;
+                _targetPosition = new Vector3(_initialPositionX + 2, transform.position.y, transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
+            }
+
+            if (Vector3.Distance(transform.position, _targetPosition) > .001f) return;
+            
+            _isMovingLeft = _isMovingRight = false;
+            StopMoving?.Invoke();
         }
 
         void FixedUpdate() {
             if (_isFalling) return;
             
             //Move the player
-            _rb.velocity = new Vector2(m_WalkModifier * m_MoveSpeed, _rb.velocity.y);
+            _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y, m_WalkModifier * m_MoveSpeed);
 
             if (!_isJumping) return;
             //Make the player jump
@@ -75,6 +97,23 @@ namespace pepipe.DeathRun.Player
             Jumping?.Invoke();
             ++_doubleJump;
             _isJumping = true;
+        }
+        
+        void OnLeft(InputValue value) {
+            if(!_isGrounded || _isMovingLeft || _isMovingRight) return;
+
+            m_Logger.Log("Moving Left", this);
+            GoingLeft?.Invoke();
+            _initialPositionX = transform.position.x;
+            _isMovingLeft = true;
+        }
+        
+        void OnRight(InputValue value) {
+            if(!_isGrounded || _isMovingLeft || _isMovingRight) return;
+            
+            GoingRight?.Invoke();
+            _initialPositionX = transform.position.x;
+            _isMovingRight = true;
         }
     
         void OnCollisionEnter(Collision other) {
