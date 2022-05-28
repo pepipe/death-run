@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace pepipe.DeathRun.Score
 {
-    public static class Leaderboard
-    {
+    public static class Leaderboard {
         public struct ScoreEntry
         {
             public string ScoreName;

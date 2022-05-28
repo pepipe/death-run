@@ -15,14 +15,18 @@ namespace pepipe.DeathRun
         [Header("Debug")] 
         [SerializeField] CustomLogger m_Logger;
 
+        public RoadPiece CurrentRoadPiece => _currentRoadPiece;
+
         Pool<RoadPiece> _roadPiecesPool;
         Queue<RoadPiece> _roadPieces;
         int _piecesSpawned;
+        RoadPiece _currentRoadPiece;
 
         void Start() {
             _roadPiecesPool = new Pool<RoadPiece>(new PrefabFactory<RoadPiece>(m_RoadPrefab, gameObject));
             _roadPieces = new Queue<RoadPiece>();
             _roadPieces.Enqueue(InitialRoad);
+            _currentRoadPiece = InitialRoad;
             m_PlayerController.RoadSpawn += OnRoadSpawn;
             m_PlayerController.RoadDespawn += OnRoadDespawn;
         }
@@ -43,6 +47,7 @@ namespace pepipe.DeathRun
             var zpos = m_RoadPieceZSpawn * _piecesSpawned + InitialRoad.transform.position.z;
             m_Logger.Log("ZPOS: " + zpos, this);
             _roadPieces.Enqueue(roadPiece);
+            _currentRoadPiece = roadPiece;
         }
 
         void OnRoadDespawn() {

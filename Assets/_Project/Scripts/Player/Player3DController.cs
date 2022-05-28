@@ -44,12 +44,7 @@ namespace pepipe.DeathRun.Player
         Vector3 _targetPosition;
         float _initialPositionX;
         int _currentLane;
-
-        const string GroundLayer = "Ground";
-        const string FallLayer = "Fall";
-        const string DeathLayer = "Death";
-        const string RoadSpawnerTag = "RoadSpawner";
-
+        
         void Awake() {
             _rb = GetComponent<Rigidbody>();
         }
@@ -93,7 +88,7 @@ namespace pepipe.DeathRun.Player
 
         IEnumerator CheckPlayerPosition() {
             yield return new WaitForSeconds(.15f);
-            var playerPosition = Convert.ToInt32(Math.Floor(transform.position.x));
+            var playerPosition = Convert.ToInt32(Math.Floor(transform.position.z));
             Score?.Invoke(playerPosition);
             _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
         }
@@ -131,7 +126,7 @@ namespace pepipe.DeathRun.Player
         }
     
         void OnCollisionEnter(Collision other) {
-            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
+            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
             m_Logger.Log("Ground", this);
             StopJumping?.Invoke();
@@ -140,28 +135,28 @@ namespace pepipe.DeathRun.Player
         }
 
         void OnCollisionExit(Collision other) {
-            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
+            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
             m_Logger.Log("Exit Ground", this);
             _isGrounded = false;
         }
 
         void OnTriggerEnter(Collider other) {
-            if (LayerMask.LayerToName(other.gameObject.layer).Equals(FallLayer)) {
-                m_Logger.Log("Fall!", this);
-                _isFalling = true;
-            }
-            else if (LayerMask.LayerToName(other.gameObject.layer).Equals(DeathLayer)) {
-                m_Logger.Log("Death!", this);
-                StopCoroutine(_checkPlayerPosCoroutine);
-                _rb.isKinematic = true;
-                Dying?.Invoke();
-            }else if (other.tag.Equals(RoadSpawnerTag)) {
-                m_Logger.Log($"Road {other.name}", this);
-                if(other.name.Equals("Spawn"))
-                    RoadSpawn?.Invoke();
-                else
-                    RoadDespawn?.Invoke();
+            switch (other.tag) {
+                case GameManager.ObstacleTag:
+                    m_Logger.Log("Death!", this);
+                    StopCoroutine(_checkPlayerPosCoroutine);
+                    _rb.isKinematic = true;
+                    Dying?.Invoke();
+                    break;
+                case GameManager.RoadSpawnerTag: {
+                    m_Logger.Log($"Road {other.name}", this);
+                    if(other.name.Equals("Spawn"))
+                        RoadSpawn?.Invoke();
+                    else
+                        RoadDespawn?.Invoke();
+                    break;
+                }
             }
         }
     }
