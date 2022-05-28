@@ -1,3 +1,4 @@
+using pepipe.DeathRun.Score;
 using UnityEngine;
 
 namespace pepipe.DeathRun

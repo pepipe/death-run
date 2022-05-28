@@ -34,7 +34,7 @@ namespace pepipe.DeathRun.Score
 
         public static int GetMinScore()
         {
-            return _entries.Select(e => e.Score).Min();
+            return Entries.Select(e => e.Score).Min();
         }
 
         static List<ScoreEntry> _entries;
