@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using pepipe.Utils.Logging;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,14 +17,19 @@ namespace pepipe.DeathRun.Player
         public Action GoingLeft { get; set; }
         public Action GoingRight { get; set; }
         public Action StopMoving { get; set; }
-
+        public Action RoadSpawn { get; set; }
+        public Action RoadDespawn { get; set; }
+        
         [SerializeField] float m_WalkModifier = 1f;
         [SerializeField] float m_MoveSpeed = 7f;
         [SerializeField] float m_JumpForce = 7f;
+        [SerializeField] int m_StartingLane = 2;
+        [SerializeField] List<float> m_LanesPosition;
         
         [Header("Debug")] 
         [SerializeField] CustomLogger m_Logger;
 
+        Vector3 _startingPosition;
         Vector2 _moveDirection;
         Vector2 _rawInput;
         bool _isJumping;
@@ -37,10 +43,12 @@ namespace pepipe.DeathRun.Player
         bool _pressedUI;
         Vector3 _targetPosition;
         float _initialPositionX;
+        int _currentLane;
 
         const string GroundLayer = "Ground";
         const string FallLayer = "Fall";
         const string DeathLayer = "Death";
+        const string RoadSpawnerTag = "RoadSpawner";
 
         void Awake() {
             _rb = GetComponent<Rigidbody>();
@@ -48,19 +56,20 @@ namespace pepipe.DeathRun.Player
 
         void Start() {
             _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
+            _startingPosition = transform.position;
+            transform.position = new Vector3(m_LanesPosition[m_StartingLane], 
+                _startingPosition.y, 
+                _startingPosition.z);
+            _currentLane = m_StartingLane;
         }
 
         void Update()
         {
             _pressedUI = EventSystem.current.IsPointerOverGameObject();
             
-            if (_isMovingLeft) {
+            if (_isMovingLeft || _isMovingRight) {
                 var step = m_MoveSpeed * Time.deltaTime;
-                _targetPosition = new Vector3(_initialPositionX - 2, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
-            }else if (_isMovingRight) {
-                var step = m_MoveSpeed * Time.deltaTime;
-                _targetPosition = new Vector3(_initialPositionX + 2, transform.position.y, transform.position.z);
+                _targetPosition = new Vector3(m_LanesPosition[_currentLane], transform.position.y, transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
             }
 
@@ -101,8 +110,10 @@ namespace pepipe.DeathRun.Player
         
         void OnLeft(InputValue value) {
             if(!_isGrounded || _isMovingLeft || _isMovingRight) return;
+            if (_currentLane - 1 < 0) return;
 
             m_Logger.Log("Moving Left", this);
+            --_currentLane;
             GoingLeft?.Invoke();
             _initialPositionX = transform.position.x;
             _isMovingLeft = true;
@@ -110,7 +121,10 @@ namespace pepipe.DeathRun.Player
         
         void OnRight(InputValue value) {
             if(!_isGrounded || _isMovingLeft || _isMovingRight) return;
-            
+            if (_currentLane + 1 == m_LanesPosition.Count) return;
+
+            m_Logger.Log("Moving Right", this);
+            ++_currentLane;
             GoingRight?.Invoke();
             _initialPositionX = transform.position.x;
             _isMovingRight = true;
@@ -142,6 +156,12 @@ namespace pepipe.DeathRun.Player
                 StopCoroutine(_checkPlayerPosCoroutine);
                 _rb.isKinematic = true;
                 Dying?.Invoke();
+            }else if (other.tag.Equals(RoadSpawnerTag)) {
+                m_Logger.Log($"Road {other.name}", this);
+                if(other.name.Equals("Spawn"))
+                    RoadSpawn?.Invoke();
+                else
+                    RoadDespawn?.Invoke();
             }
         }
     }

@@ -11,6 +11,8 @@ a need to do some steps so you can build the project.
 I didn't create any of the art used in the game. All was possible because of the kind people listed below (in no particular order):
 
 [Quaternius](https://quaternius.com):
-I used models from Animated Monster Pack, Cute Animated Monsters Pack, Modular Dungeons Pack.
+I used models from Animated Monster Pack, Cute Animated Monsters Pack, Modular Dungeons Pack, Ultimate Modular Men Pack, Ultimate Modular Woman Pack, Cars Pack.
 
 [Richard Whitelock](http://www.richardwhitelock.com): Skybox Deep Dusck from Unity Store Asset AllSkyFree.
+
+[ambientCG.com](ambientCG.com): Contains assets from ambientCG, licensed under CC0 1.0 Universal.

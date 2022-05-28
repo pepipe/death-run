@@ -63,7 +63,7 @@ namespace com.pepipe.Pool
             return _members.GetEnumerator();
         }
         
-        private T Create(bool startActive) {
+        T Create(bool startActive) {
             var member = _factory.Create();
             if(startActive)
                 member.Activate();

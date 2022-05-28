@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Runner3DWoman
+  m_Controller: {fileID: 9100000, guid: aba6e1efa308dc84f8cb16aefb92aa76, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 1395189703230314720, guid: a224d83b407d81144b31a0de02ca4036, type: 3}
+    m_OverrideClip: {fileID: 1395189703230314720, guid: ac9574bfc9dac4e439e87a9a9c7f30c0, type: 3}
+  - m_OriginalClip: {fileID: 701305088695040914, guid: a224d83b407d81144b31a0de02ca4036, type: 3}
+    m_OverrideClip: {fileID: 701305088695040914, guid: ac9574bfc9dac4e439e87a9a9c7f30c0, type: 3}
+  - m_OriginalClip: {fileID: 6051821925488956567, guid: a224d83b407d81144b31a0de02ca4036, type: 3}
+    m_OverrideClip: {fileID: 6051821925488956567, guid: ac9574bfc9dac4e439e87a9a9c7f30c0, type: 3}
+  - m_OriginalClip: {fileID: 4447012609936615250, guid: a224d83b407d81144b31a0de02ca4036, type: 3}
+    m_OverrideClip: {fileID: 4447012609936615250, guid: ac9574bfc9dac4e439e87a9a9c7f30c0, type: 3}
+  - m_OriginalClip: {fileID: -7580519143377161132, guid: a224d83b407d81144b31a0de02ca4036, type: 3}
+    m_OverrideClip: {fileID: -7580519143377161132, guid: ac9574bfc9dac4e439e87a9a9c7f30c0, type: 3}
