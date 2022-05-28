@@ -86,6 +86,16 @@ namespace pepipe.DeathRun.Player
             _isJumping = false;
         }
 
+        public void GoRightMobile()
+        {
+            OnRight(null);
+        }
+        
+        public void GoLeftMobile()
+        {
+            OnLeft(null);
+        }
+
         IEnumerator CheckPlayerPosition() {
             yield return new WaitForSeconds(.15f);
             var playerPosition = Convert.ToInt32(Math.Floor(transform.position.z));
