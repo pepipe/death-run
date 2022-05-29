@@ -63,8 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NumberOfPieces: 4
-  m_ObstaclesPosition:
-  - 3.5
+  m_ObstaclesPosition: []
 --- !u!1001 &4682339812295753122
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace pepipe.DeathRun.GameDebug
+namespace pepipe.DeathRun.Player
 {
-    public class DebugHelper : MonoBehaviour {
+    public class RandomPlayer : MonoBehaviour {
         [SerializeField] List<GameObject> m_Characters;
 
         int _currentChar;
 
-        void Start() {
-            _currentChar = m_Characters.FindIndex(c => c.activeSelf);
+        void Awake() {
+            _currentChar = Random.Range(0, m_Characters.Count);
+            m_Characters[_currentChar].SetActive(true);
             DisableAllOtherCharacters();
         }
 

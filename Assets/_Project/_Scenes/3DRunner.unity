@@ -3084,6 +3084,7 @@ GameObject:
   - component: {fileID: 703095555}
   - component: {fileID: 703095562}
   - component: {fileID: 703095559}
+  - component: {fileID: 703095563}
   - component: {fileID: 703095561}
   m_Layer: 0
   m_Name: Player
@@ -3185,6 +3186,27 @@ MonoBehaviour:
   - 5.2
   - 7.8
   m_Logger: {fileID: 962504785}
+--- !u!114 &703095563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703095554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc9df836695f97468a713c39a7ccee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Characters:
+  - {fileID: 423773820}
+  - {fileID: 561971572}
+  - {fileID: 243130421}
+  - {fileID: 699869459}
+  - {fileID: 175525475}
+  - {fileID: 830719445}
+  - {fileID: 2128995466}
+  - {fileID: 1437601732}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6940,7 +6962,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2143397024}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: pepipe.DeathRun.DebugHelper, Assembly-CSharp
         m_MethodName: NextChar
         m_Mode: 1
@@ -7220,7 +7242,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2022522586}
-  - {fileID: 2143397023}
   - {fileID: 2029743582}
   - {fileID: 2032563269}
   m_Father: {fileID: 0}
@@ -7930,7 +7951,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1788278523}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2029743583
 MonoBehaviour:
@@ -7990,7 +8011,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1788278523}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2032563270
 MonoBehaviour:
@@ -8493,59 +8514,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2143397022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2143397023}
-  - component: {fileID: 2143397024}
-  m_Layer: 0
-  m_Name: Debug
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2143397023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143397022}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1788278523}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2143397024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143397022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc9df836695f97468a713c39a7ccee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Characters:
-  - {fileID: 423773820}
-  - {fileID: 561971572}
-  - {fileID: 243130421}
-  - {fileID: 699869459}
-  - {fileID: 175525475}
-  - {fileID: 830719445}
-  - {fileID: 2128995466}
-  - {fileID: 1437601732}
 --- !u!33 &2020784705041654924
 MeshFilter:
   m_ObjectHideFlags: 0
