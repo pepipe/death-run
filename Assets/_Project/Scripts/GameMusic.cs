@@ -14,7 +14,8 @@ namespace pepipe.DeathRun
 
         void OnDisable()
         {
-            m_sceneController.Player.Dying -= OnDeath;
+            if(m_sceneController != null && m_sceneController.Player != null)
+                m_sceneController.Player.Dying -= OnDeath;
         }
 
         void OnDeath()

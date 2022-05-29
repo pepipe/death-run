@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RoadSpawner
   - Obstacle
+  - ObstacleDespawner
   layers:
   - Default
   - TransparentFX

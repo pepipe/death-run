@@ -32,6 +32,7 @@ namespace pepipe.DeathRun
         public const string PlayerTag = "Player";
         public const string RoadSpawnerTag = "RoadSpawner";
         public const string ObstacleTag = "Obstacle";
+        public const string ObstacleDespawnerTag = "ObstacleDespawner";
         #endregion
         
         public int Score { get; set; }

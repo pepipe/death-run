@@ -7,6 +7,7 @@ namespace pepipe.DeathRun.Road
 {
     public class Vehicle : MonoBehaviour, IResettable {
         public Action<Vehicle> DestroyVehicle;
+
         public enum VehicleType {
             Cop,
             NormalCar,
@@ -19,8 +20,7 @@ namespace pepipe.DeathRun.Road
         
         [SerializeField] Vector2 m_MinMaxSpeed;
         [SerializeField] VehicleType m_Type;
-        [SerializeField] bool m_InitialCar;
-        
+
         public float VehicleSpeed => _vehicleSpeed;
         public VehicleType Type => m_Type;
 
@@ -39,13 +39,9 @@ namespace pepipe.DeathRun.Road
         }
 
         void OnTriggerEnter(Collider other) {
-            if (!other.tag.Equals(GameManager.RoadSpawnerTag) || other.name.Equals("Spawn")) return;
-            
-            if(!m_InitialCar)
+            Debug.Log($"Other Name: {other.name}, other tag: {other.tag}");
+            if(other.tag.Equals(GameManager.ObstacleDespawnerTag) && other.name.Equals("CarDespawn"))
                 DestroyVehicle?.Invoke(this);
-            else
-                Destroy(gameObject);
-                
         }
 
         public void Activate() {

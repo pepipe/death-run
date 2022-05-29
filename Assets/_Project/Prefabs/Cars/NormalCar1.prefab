@@ -308,7 +308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MinMaxSpeed: {x: -28, y: -40}
   m_Type: 1
-  m_InitialCar: 0
 --- !u!54 &2381699963671420163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -321,9 +320,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 118
   m_CollisionDetection: 0
 --- !u!65 &3448621089376076775
 BoxCollider:

@@ -30,7 +30,6 @@ namespace pepipe.DeathRun.Player
         bool _isFalling;
         Coroutine _checkPlayerPosCoroutine;
         bool _pressedUI;
-        float _lastScore;
 
         void Awake() {
             _rb = GetComponent<Rigidbody>();
@@ -60,14 +59,8 @@ namespace pepipe.DeathRun.Player
         IEnumerator CheckPlayerPosition() {
             yield return new WaitForSeconds(.15f);
             var playerPosition = Convert.ToInt32(Math.Floor(transform.position.x));
-            if (_lastScore == playerPosition) {
-                Die();
-                yield return null;
-            } else {
-                _lastScore = playerPosition;
-                Score?.Invoke(playerPosition);
-                _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
-            }
+            Score?.Invoke(playerPosition);
+            _checkPlayerPosCoroutine = StartCoroutine(CheckPlayerPosition());
         }
 
         //Used by the input system
@@ -100,6 +93,7 @@ namespace pepipe.DeathRun.Player
             if (LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.FallLayer)) {
                 m_Logger.Log("Fall!", this);
                 _isFalling = true;
+                Die();
             }else if (other.tag.Equals(GameManager.ObstacleTag)){
                 Die();
                 m_Logger.Log("Hit Obstacle", this);

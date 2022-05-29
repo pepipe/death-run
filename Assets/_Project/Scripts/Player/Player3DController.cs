@@ -158,7 +158,7 @@ namespace pepipe.DeathRun.Player
                     break;
                 case GameManager.RoadSpawnerTag: {
                     m_Logger.Log($"Road {other.name}", this);
-                    if(other.name.Equals("Spawn"))
+                    if(other.name.Equals("RoadSpawn"))
                         RoadSpawn?.Invoke();
                     else
                         RoadDespawn?.Invoke();

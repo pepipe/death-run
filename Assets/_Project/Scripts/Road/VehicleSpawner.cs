@@ -43,6 +43,10 @@ namespace pepipe.DeathRun.Road
             StartCoroutine(SpawningVehicles());
         }
 
+        void OnDisable() {
+            StopAllCoroutines();
+        }
+
         void SpawnVehicle() {
             if (_vehiclesSpawned >= m_MaxVehiclesSpawned) return;
 
@@ -63,6 +67,11 @@ namespace pepipe.DeathRun.Road
 
         void OnVehicleDestroy(Vehicle vehicle) {
             vehicle.DestroyVehicle -= OnVehicleDestroy;
+            StartCoroutine(DestroyVehicle(vehicle));
+        }
+
+        IEnumerator DestroyVehicle(Vehicle vehicle) {
+            yield return new WaitForSeconds(1f);
             --_vehiclesSpawned;
             switch (vehicle.Type) {
                 case Vehicle.VehicleType.Suv:
