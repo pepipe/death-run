@@ -31,10 +31,6 @@ namespace pepipe.DeathRun.Player
         Coroutine _checkPlayerPosCoroutine;
         bool _pressedUI;
 
-        const string GroundLayer = "Ground";
-        const string FallLayer = "Fall";
-        const string DeathLayer = "Death";
-
         void Awake() {
             _rb = GetComponent<Rigidbody>();
         }
@@ -78,7 +74,7 @@ namespace pepipe.DeathRun.Player
         }
     
         void OnCollisionEnter(Collision other) {
-            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
+            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
             m_Logger.Log("Ground", this);
             StopJumping?.Invoke();
@@ -87,23 +83,29 @@ namespace pepipe.DeathRun.Player
         }
 
         void OnCollisionExit(Collision other) {
-            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GroundLayer)) return;
+            if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
             m_Logger.Log("Exit Ground", this);
             _isGrounded = false;
         }
 
         void OnTriggerEnter(Collider other) {
-            if (LayerMask.LayerToName(other.gameObject.layer).Equals(FallLayer)) {
+            if (LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.FallLayer)) {
                 m_Logger.Log("Fall!", this);
                 _isFalling = true;
-            }
-            else if (LayerMask.LayerToName(other.gameObject.layer).Equals(DeathLayer)) {
+            }else if (other.tag.Equals(GameManager.ObstacleTag)){
+                Die();
+                m_Logger.Log("Hit Obstacle", this);
+            }else if (LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.DeathLayer)) {
                 m_Logger.Log("Death!", this);
-                StopCoroutine(_checkPlayerPosCoroutine);
-                _rb.isKinematic = true;
-                Dying?.Invoke();
+                Die();
             }
+        }
+
+        void Die() {
+            StopCoroutine(_checkPlayerPosCoroutine);
+            _rb.isKinematic = true;
+            Dying?.Invoke();
         }
     }
 }

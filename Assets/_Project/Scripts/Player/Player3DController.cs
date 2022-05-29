@@ -42,7 +42,6 @@ namespace pepipe.DeathRun.Player
         Coroutine _checkPlayerPosCoroutine;
         bool _pressedUI;
         Vector3 _targetPosition;
-        float _initialPositionX;
         int _currentLane;
         
         void Awake() {
@@ -120,7 +119,6 @@ namespace pepipe.DeathRun.Player
             m_Logger.Log("Moving Left", this);
             --_currentLane;
             GoingLeft?.Invoke();
-            _initialPositionX = transform.position.x;
             _isMovingLeft = true;
         }
         
@@ -131,7 +129,6 @@ namespace pepipe.DeathRun.Player
             m_Logger.Log("Moving Right", this);
             ++_currentLane;
             GoingRight?.Invoke();
-            _initialPositionX = transform.position.x;
             _isMovingRight = true;
         }
     

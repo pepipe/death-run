@@ -17,6 +17,11 @@ namespace pepipe.DeathRun.Platform
         [SerializeField] float m_MinHeight = -1;
         [SerializeField] float m_MaxHeight = 2;
         [SerializeField] Platform m_InitialPlatform;
+
+        [Header("Obstacles")] 
+        [SerializeField] ObstaclesPool m_CratesPool;
+        [SerializeField] ObstaclesPool m_ArchesPool;
+        [SerializeField] ObstaclesPool m_TrapsPool;
         
         [Header("Pool References")]
         [SerializeField] PlatformPiecesPool m_Platform2PiecesPool;
@@ -28,14 +33,19 @@ namespace pepipe.DeathRun.Platform
 
         [Header("Debug")] 
         [SerializeField] CustomLogger m_Logger;
-
+        
         int _nextPlatformPositionX;
-        float _lastPlatformHeight;
         const int PlatformSize = 2;
         Queue<(int nextPositionX, Platform platform)> _spawnedPlatforms;
         int _firstPlatformInQueuePositionX;
+        List<ObstaclesPool> _obstaclesPools;
 
         void Start() {
+            _obstaclesPools = new List<ObstaclesPool> {
+                m_CratesPool,
+                m_ArchesPool,
+                m_TrapsPool
+            };
             _spawnedPlatforms = new Queue<(int, Platform)>();
             CalculateNextPlatformPosition((int)m_InitialPlatform.transform.position.x, 
                                             (int)m_InitialPlatform.NumberOfPieces);
@@ -57,20 +67,27 @@ namespace pepipe.DeathRun.Platform
 
         void SpawnPlatform() {
             var platformHeight = Random.Range(m_MinHeight, m_MaxHeight);
-            _lastPlatformHeight = platformHeight;
             m_Logger.Log("platform height: " + platformHeight, this);
             
             var platformGap = Random.Range(m_MinGap, m_MaxGap + 1);
             var spawnPositionX = _nextPlatformPositionX + platformGap;
             
             var newPlatform = GetRandomPlatform();
-            newPlatform.transform.position = new Vector3(spawnPositionX,
-                newPlatform.transform.position.y,
+            newPlatform.transform.parent = transform.parent;
+            newPlatform.transform.localPosition = new Vector3(spawnPositionX,
+                platformHeight,
                 newPlatform.transform.position.z);
+            
+            newPlatform.SpawnObstacle(GetRandomObstaclePool());
             
             CalculateNextPlatformPosition((int)newPlatform.transform.position.x,
                                             (int)newPlatform.NumberOfPieces);
             _spawnedPlatforms.Enqueue((_nextPlatformPositionX, newPlatform));
+        }
+
+        ObstaclesPool GetRandomObstaclePool() {
+            var poolIndex = Random.Range(0, _obstaclesPools.Count);
+            return _obstaclesPools[poolIndex];
         }
 
         void FreePlatform() {
