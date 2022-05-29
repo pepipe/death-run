@@ -25,7 +25,7 @@ namespace pepipe.DeathRun.Player
         [SerializeField] float m_JumpForce = 7f;
         [SerializeField] int m_StartingLane = 2;
         [SerializeField] List<float> m_LanesPosition;
-        
+
         [Header("Debug")] 
         [SerializeField] CustomLogger m_Logger;
 

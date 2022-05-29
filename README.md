@@ -5,8 +5,10 @@ Game created for GameDev GameJam 2022.
 Because I cannot distribute some of the free art in the project there's 
 a need to do some steps so you can build the project.
 
-- Skybox: Get [AllSky](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014) asset. Open 2DRunner scene, in Lighning window set the enviorment Skybox material to Deep Dusk Equirect.
-- https://www.1001freefonts.com/index.php
+Skybox: Get [AllSky](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014) asset.
+- Open 3DRunner scene, in Lightning window set the environment Skybox material to Epic_BlueSunset Equirect (inside Art/Materials).
+- Open 2DRunner scene, in Lightning window set the environment Skybox material to Deep Dusk Equirect (inside Art/Materials).
+
 
 
 ### Art Credits 
@@ -24,7 +26,9 @@ I also use some ui textures from UI Pack.
 All sounds are from [freesound](https://freesound.org).
 
 ### Fonts
-28 Days Later - Film Himmel - Jens R. Ziehn
-Daniel Davis - Font Kong
-Death Blood - Iconian Fonts
+All from [1001freefonts](https://www.1001freefonts.com/index.php).
+
+- 28 Days Later - Film Himmel - Jens R. Ziehn
+- Daniel Davis - Font Kong
+- Death Blood - Iconian Fonts
 
