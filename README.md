@@ -20,6 +20,9 @@ I also use some ui textures from UI Pack.
 
 [ambientCG.com](ambientCG.com): Contains assets from ambientCG, licensed under CC0 1.0 Universal.
 
+### Sounds
+All sounds are from [freesound](https://freesound.org).
+
 ### Fonts
 28 Days Later - Film Himmel - Jens R. Ziehn
 Daniel Davis - Font Kong
