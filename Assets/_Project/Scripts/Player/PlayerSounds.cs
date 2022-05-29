@@ -34,6 +34,7 @@ namespace pepipe.DeathRun.Player
 
         void OnDeath()
         {
+            _sceneController.Player.Dying -= OnDeath;
             _audioSource.clip = m_DeathSound;
             _audioSource.Play();
         }
