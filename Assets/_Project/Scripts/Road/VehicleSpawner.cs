@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Road
 {
     public class VehicleSpawner : MonoBehaviour {
         [SerializeField] int m_MaxVehiclesSpawned = 12;

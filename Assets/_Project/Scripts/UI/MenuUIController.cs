@@ -4,7 +4,7 @@ using pepipe.Utils.Logging;
 using TMPro;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.UI
 {
     public class MenuUIController : MonoBehaviour
     {

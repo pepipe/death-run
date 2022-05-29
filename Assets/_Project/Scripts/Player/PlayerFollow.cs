@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Player
 {
     public class PlayerFollow : MonoBehaviour {
         [SerializeField] Transform m_Target;

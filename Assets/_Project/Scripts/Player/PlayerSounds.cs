@@ -1,7 +1,6 @@
-using pepipe.DeathRun.Player;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Player
 {
     [RequireComponent(typeof(AudioSource))]
     public class PlayerSounds : MonoBehaviour

@@ -1,7 +1,7 @@
 using com.pepipe.Pool;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Road
 {
     public class RoadPiece : MonoBehaviour, IResettable {
         [SerializeField] GameObject m_CarSpawn;

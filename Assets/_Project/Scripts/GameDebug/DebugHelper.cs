@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.GameDebug
 {
     public class DebugHelper : MonoBehaviour {
         [SerializeField] List<GameObject> m_Characters;

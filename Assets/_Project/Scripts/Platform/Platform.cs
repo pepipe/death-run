@@ -1,7 +1,7 @@
 using com.pepipe.Pool;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Platform
 {
     public class Platform : MonoBehaviour, IResettable
     {

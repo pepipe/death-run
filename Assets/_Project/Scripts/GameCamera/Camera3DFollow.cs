@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace pepipe.DeathRun.Camera
+namespace pepipe.DeathRun.GameCamera
 {
     public class Camera3DFollow : MonoBehaviour
     {

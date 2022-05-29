@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13014492, g: 0.09454236, b: 0.124829195, a: 1}
+  m_IndirectSpecularColor: {r: 0.12996575, g: 0.09438678, b: 0.1246138, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1876,6 +1876,8 @@ MonoBehaviour:
   m_DistanceToSpawn: 20
   m_MinGap: 5
   m_MaxGap: 12
+  m_MinHeight: -1
+  m_MaxHeight: 2
   m_InitialPlatform: {fileID: 9139487081662959328}
   m_Platform2PiecesPool: {fileID: 1799682766}
   m_Platform3PiecesPool: {fileID: 1101577739}
@@ -3193,68 +3195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FollowTransform: {fileID: 703095555}
   m_FollowInY: 0
---- !u!1 &993649295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 993649296}
-  - component: {fileID: 993649297}
-  - component: {fileID: 993649298}
-  m_Layer: 7
-  m_Name: Fall
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &993649296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993649295}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.528, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1587594990}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &993649297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993649295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.38595104, z: 1}
-  m_Center: {x: 0, y: 0.23502302, z: 0}
---- !u!114 &993649298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993649295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e9eb814d744e9479d4c4a8496c0e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 703095555}
-  m_FollowInX: 1
-  m_FollowInY: 0
-  m_FollowInZ: 0
 --- !u!1001 &1048339575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3810,7 +3750,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1587594990}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1291200904
 BoxCollider:
@@ -4524,7 +4464,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 730073033}
-  - {fileID: 993649296}
   - {fileID: 1291200903}
   m_Father: {fileID: 1931130694}
   m_RootOrder: 1

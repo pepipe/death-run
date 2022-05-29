@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using pepipe.Utils.Logging;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Platform
 {
     public class PlatformSpawner : MonoBehaviour {
         [Header("Camera Settings")]
@@ -12,6 +14,8 @@ namespace pepipe.DeathRun
         [Header("Spawner Settings")] 
         [SerializeField] int m_MinGap = 5;
         [SerializeField] int m_MaxGap = 12;
+        [SerializeField] float m_MinHeight = -1;
+        [SerializeField] float m_MaxHeight = 2;
         [SerializeField] Platform m_InitialPlatform;
         
         [Header("Pool References")]
@@ -26,6 +30,7 @@ namespace pepipe.DeathRun
         [SerializeField] CustomLogger m_Logger;
 
         int _nextPlatformPositionX;
+        float _lastPlatformHeight;
         const int PlatformSize = 2;
         Queue<(int nextPositionX, Platform platform)> _spawnedPlatforms;
         int _firstPlatformInQueuePositionX;
@@ -51,8 +56,13 @@ namespace pepipe.DeathRun
         }
 
         void SpawnPlatform() {
+            var platformHeight = Random.Range(m_MinHeight, m_MaxHeight);
+            _lastPlatformHeight = platformHeight;
+            m_Logger.Log("platform height: " + platformHeight, this);
+            
             var platformGap = Random.Range(m_MinGap, m_MaxGap + 1);
             var spawnPositionX = _nextPlatformPositionX + platformGap;
+            
             var newPlatform = GetRandomPlatform();
             newPlatform.transform.position = new Vector3(spawnPositionX,
                 newPlatform.transform.position.y,

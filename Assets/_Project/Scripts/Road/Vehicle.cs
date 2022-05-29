@@ -3,7 +3,7 @@ using com.pepipe.Pool;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Road
 {
     public class Vehicle : MonoBehaviour, IResettable {
         public Action<Vehicle> DestroyVehicle;

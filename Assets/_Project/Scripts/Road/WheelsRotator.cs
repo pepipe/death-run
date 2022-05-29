@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Road
 {
     public class WheelsRotator : MonoBehaviour {
         [SerializeField] float m_RotateSpeed = 10f;

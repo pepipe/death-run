@@ -4,7 +4,7 @@ using pepipe.DeathRun.Player;
 using pepipe.Utils.Logging;
 using UnityEngine;
 
-namespace pepipe.DeathRun
+namespace pepipe.DeathRun.Road
 {
     public class RoadSpawner : MonoBehaviour {
         [SerializeField] RoadPiece InitialRoad; 
