@@ -39,7 +39,6 @@ namespace pepipe.DeathRun.Road
         }
 
         void OnTriggerEnter(Collider other) {
-            Debug.Log($"Other Name: {other.name}, other tag: {other.tag}");
             if(other.tag.Equals(GameManager.ObstacleDespawnerTag) && other.name.Equals("CarDespawn"))
                 DestroyVehicle?.Invoke(this);
         }

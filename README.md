@@ -18,7 +18,7 @@ I didn't create any of the art used in the game. All was possible because of the
 I used models from Animated Monster Pack, Cute Animated Monsters Pack, Modular Dungeons Pack, Ultimate Modular Men Pack, Ultimate Modular Woman Pack, Cars Pack.
 I also use some ui textures from UI Pack.
 
-[Richard Whitelock](http://www.richardwhitelock.com): Skybox Deep Dusck from Unity Store Asset AllSkyFree.
+[Richard Whitelock](http://www.richardwhitelock.com): Skybox Deep Dusck and Epic BlueSunset from Unity Store Asset AllSkyFree.
 
 [ambientCG.com](ambientCG.com): Contains assets from ambientCG, licensed under CC0 1.0 Universal.
 

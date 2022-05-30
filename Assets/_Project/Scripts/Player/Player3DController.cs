@@ -36,13 +36,13 @@ namespace pepipe.DeathRun.Player
         bool _isMovingLeft;
         bool _isMovingRight;
         Rigidbody _rb;
-        int _doubleJump;
         bool _isGrounded;
         bool _isFalling;
         Coroutine _checkPlayerPosCoroutine;
         bool _pressedUI;
         Vector3 _targetPosition;
         int _currentLane;
+        string _currentGround;
         
         void Awake() {
             _rb = GetComponent<Rigidbody>();
@@ -81,7 +81,7 @@ namespace pepipe.DeathRun.Player
 
             if (!_isJumping) return;
             //Make the player jump
-            _rb.velocity += new Vector3(0f, m_JumpForce / _doubleJump, 0);
+            _rb.velocity += new Vector3(0f, m_JumpForce, 0);
             _isJumping = false;
         }
 
@@ -104,11 +104,10 @@ namespace pepipe.DeathRun.Player
 
         //Used by the input system
         void OnJump(InputValue value) {
-            if(!_isGrounded && _doubleJump >= 2) return;
+            if(!_isGrounded) return;
             if (_pressedUI) return;
             
             Jumping?.Invoke();
-            ++_doubleJump;
             _isJumping = true;
         }
         
@@ -135,16 +134,17 @@ namespace pepipe.DeathRun.Player
         void OnCollisionEnter(Collision other) {
             if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
-            m_Logger.Log("Ground", this);
+            m_Logger.Log($"Ground, {other.gameObject.name}", this);
+            _currentGround = other.gameObject.name;
             StopJumping?.Invoke();
             _isGrounded = true;
-            _doubleJump = 0;
         }
 
         void OnCollisionExit(Collision other) {
             if (!LayerMask.LayerToName(other.gameObject.layer).Equals(GameManager.GroundLayer)) return;
             
-            m_Logger.Log("Exit Ground", this);
+            m_Logger.Log($"Exit Ground, {other.gameObject.name}", this);
+            if (!_currentGround.Equals(other.gameObject.name)) return;
             _isGrounded = false;
         }
 

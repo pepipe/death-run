@@ -20,7 +20,6 @@ namespace pepipe.DeathRun.Platform
 
         [Header("Obstacles")] 
         [SerializeField] ObstaclesPool m_CratesPool;
-        [SerializeField] ObstaclesPool m_ArchesPool;
         [SerializeField] ObstaclesPool m_TrapsPool;
         
         [Header("Pool References")]
@@ -43,7 +42,6 @@ namespace pepipe.DeathRun.Platform
         void Start() {
             _obstaclesPools = new List<ObstaclesPool> {
                 m_CratesPool,
-                m_ArchesPool,
                 m_TrapsPool
             };
             _spawnedPlatforms = new Queue<(int, Platform)>();
