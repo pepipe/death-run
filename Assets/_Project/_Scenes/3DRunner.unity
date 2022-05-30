@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 3095977486293936015, guid: 7d901f47f86aa3f49a480c2b4fa3e8d9, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 8076884055019666259, guid: 1700116a486eaf04e80cc7fe3ec8fb7e, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 2676205654573660051, guid: 313434ec9190ea748bea38aeb014ff4f, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -3425,14 +3425,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809355459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0287b9793c5e0264d9a7259645652109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxVehiclesSpawned: 100
+  m_MaxVehiclesSpawned: 130
   m_SpawnTimerMin: 0.15
-  m_SpawnTimerMax: 1.25
+  m_SpawnTimerMax: 1.15
   m_RoadSpawner: {fileID: 1587594991}
   m_Lanes:
   - {fileID: 1586539166}
@@ -4443,7 +4443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 8178107505021681817, guid: c5790e6c23b81f7439ba9d51a2864638, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -4492,7 +4492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 8525622191727093694, guid: bbec4aa6cb5499544bb725ac02a0ba01, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -5101,7 +5101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 8233341170954802396, guid: 6e41d737494ce884f951f172fb24c2c9, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
@@ -7168,7 +7168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoolObjectPrefab: {fileID: 1829131595814180733, guid: 622bbafd0a093ca46b86076147d8897f, type: 3}
-  m_PoolSize: 40
+  m_PoolSize: 45
   m_PoolSizeFixed: 0
   m_MaxPoolSize: 9999
   m_StartActive: 0
