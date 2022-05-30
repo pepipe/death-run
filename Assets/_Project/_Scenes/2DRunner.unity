@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2.5
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.8773585, g: 0.5045785, b: 0.22899604, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: c82a334cf5a5e47978749c210cee72a7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.12943423, g: 0.09410111, b: 0.124304466, a: 1}
+  m_IndirectSpecularColor: {r: 0.12993044, g: 0.09442521, b: 0.12480872, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: b57eed2ff718e8c4bbb3bf84488577d6, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 7d705026fa7b7f04ea41d38cf3f05e7f, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 5eb1576682fce6d49ac0b2fe56dd9729, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -3703,7 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c44fcc2deebfa246887154371ab81ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowLogs: 1
+  m_ShowLogs: 0
   m_Prefix: GAMEPLAY
   m_PrefixColor: {r: 0.35160065, g: 1, b: 0, a: 0}
 --- !u!1 &963194225
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c44fcc2deebfa246887154371ab81ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowLogs: 1
+  m_ShowLogs: 0
   m_Prefix: SPAWNER
   m_PrefixColor: {r: 0, g: 0.6055757, b: 0.6792453, a: 0}
 --- !u!1 &1622113130
@@ -7374,7 +7374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c44fcc2deebfa246887154371ab81ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowLogs: 1
+  m_ShowLogs: 0
   m_Prefix: UI
   m_PrefixColor: {r: 0, g: 0.34526274, b: 0.6784314, a: 0}
 --- !u!1001 &2085452849
